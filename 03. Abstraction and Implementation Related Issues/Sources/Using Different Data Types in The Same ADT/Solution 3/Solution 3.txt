@@ -1,0 +1,49 @@
+Solution 3: (much smarter)
+//Not only solves the issue but also allows commercializing Stack.obj
+//without the dependency on Stack.h
+//Homogeneous data type but we can produce Stack.obj without the dependency
+//on Stack.h
+
+Notice: Push calls malloc(sizeof(StackNode)) and StackNode contains
+StackEntry, which was compiled already into Stack.obj. If the user
+defines another StackEntry in Global.h this will cause a runtime problem!
+(Try it).
+//You compiled Stack.c that includes Global.h which defines the element
+//type, you cannot change the type again after compiling the source with
+//a different type.
+
+The solution, allows user for using both:
+- more than one stack with different homogeneous element type.
+- or even, a single stack of non-homogeneous element types.
+
+/*Global.h*/
+typedef struct stack {
+    int top;
+    void *entry[MAXSTACK]; //Array of void pointers to some data type
+}Stack;
+
+/*Stack.c*/
+void Push(void *pe, Stack *ps, int z) {
+    void *ptr = malloc(z);
+    memcpy(ptr, pe, z);
+    ps->entry[ps->top] = ptr;
+    ps->top++;
+}
+
+/*main.c*/
+void main(void) {
+    Stack s;
+    char e1;
+    int e2;
+    ...
+    CreateStack(&s);
+
+    Push((void *)&e1, &s, sizeof(e1));
+    Push((void *)&e2, &s, sizeof(e2));
+}
+
+//What about Pop?
+//If a single type exists in the stack, Push is fine this way. However,
+//if non-homogeneous elements exist we have to add a field of Element size.
+
+

@@ -1,0 +1,42 @@
+How to use a queue, a stack, and other data structures with the
+same element type in the same program?
+
+Since the element type of the stack, queue, and the main program is the
+same, we need to be more structured define this common element type in
+a separate file Global.h. In this file we should have all the definitions
+that are common to all of the three modules;
+
+/******Global.h******/
+typedef struct elementtype{
+    int year;
+    float age;
+    int tmp;
+}ElementType;
+
+#define MAXELEMENTS 100
+
+typedef ElementType QueueEntry;
+#define MAXQUEUE MAXELEMENTS
+
+typedef ElementType StackEntry;
+#define MAXSTACK MAXELEMENTS
+
+// Changing ElementType and MAXELEMENTS will require changing them in
+// all header files
+
+Stack.c must include Stack.h and the latter includes Global.h
+Queue.c must include Queue.h and the latter includes Gloabl.h
+Finally, main.c includes all the three header files; why?
+
+However, this will cause a "redefinition" error since the definitions
+in Global.h will appear again in the other two included header files
+because they also include Global.h; Compilation Error.
+
+To resolve this problem, we need to start Global.h by:
+#ifndef GLOBAL_H_INCLUDED
+#define GLOBAL_H_INCLUDED
+//here comes the previous definition of Global.h
+#endif GLOBAL_H_INCLUDED
+
+These statements are "Preprocessor Commands" that are processed before
+compilation.

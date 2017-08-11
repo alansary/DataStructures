@@ -1,0 +1,10 @@
+Tail Recursion
+Last statement in a function is a call to itself.
+
+No need to keep the space of the function in the stack, since it will
+return to itself. So, just pass the new parameters to the function itself.
+This reduces the stack size not the complexity of the algorithm.
+
+This call can be eliminated by reassigning the calling parameters to
+the values specified in the recursive call, and then repeating the whole
+function.

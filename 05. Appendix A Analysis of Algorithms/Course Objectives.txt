@@ -1,0 +1,19 @@
+Course Objectives:
+    - Developing rigorous treatment.
+    - Developing mathematical foundations to CS.
+    - Building intuition.
+    - Linking to CS applications.
+Good resources for analysis of algorithms are:
+    1- Rosen (2007), which we follow.
+    2- Knuth (1997), an indispensable resource.
+    3- Mahmoud (1992, 2000), for probabilistic analysis of sorting and
+       random search trees.
+The Growth of Functions
+    - Used extensively to analyze algorithms.
+    - How algorithms behave with large size input?
+    - Algorithm A takes 100 n^2 + 17 n + 4 steps; Algorithm B takes
+      n^3; which is faster?
+    - Big-O(big-oh) notation.
+    - Big-O was used by mathematicicans Edmund landau and Paul Bachmann
+      then introduced to computer science by Knuth.
+

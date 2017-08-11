@@ -1,0 +1,60 @@
+Motivation: Why Queue? (First In First Out (FIFO))
+- In a queue,
+  - new values are always added at the rear of the list
+  - values are removed from the opposite end of the list, the front
+
+Array Implementation Physical Model
+(Front is fixed as in physical lines)
+  - Shifiting all items to front in the array when dequeue operaion.
+    (Too costly...O(n))
+  - Why this was not a problem in the array implementation of Stacks?
+    Because Push and Pop were at the same end.
+  - front is fixed (at zero) and rear is incremented when appending an
+    element.
+  n-1 ... 3 	2 	1 	0
+            	C 	B 	A
+                rear=2		front=0
+  n-1 ... 3 	2 	1 	0
+                        C       B
+			rear=1  front=0
+
+Array Implementation Linear Model
+(Two indices, front and rear)
+  - front is incremented when serving an element and rear is incremented
+    when appending an element.
+  - The problem is that there will be many empty places in the front of
+    array and rear is always incremented.
+  n-1 ... 	3	2	1	0
+  		D	C	B	A
+  MAXQUEUE	rear=3			front=0
+  n-1 ...	3	2	1	0
+  MAXQUEUE	rear=3		front=1
+
+Array Implementation Circular Implementation
+  - After MAXSTACK-1 comes 0 again.
+  0 1 ... Occupied ... Max-1
+        Front   Rear
+  ----> Rear and Front advance in this direction
+
+  - Checking the Boundary conditions
+    Queue with two elements	...	F R	...
+    Queue with one element	...	FR	...
+    Empty Condition		...	R F	...
+    // front is directly after the rear
+    				...	F X X X X X X X R
+    Full Condition		X X R . F X X X X X X X X
+    // front is separated from the rear by an empty place
+    // This empty place is required to distinguish between empty and full
+    // condition
+    // F is the index of the place to be served
+    // R is the index of the place that contain the last appended element
+    ... indicates empty places, . indicates one empty place, X indicates
+    an element
+
+  - Better solutiion: Use indicator variable to distinguish between Empty
+    and Full conditions.
+    - Empty queue:		R F
+      Size = 0
+    - Full queue:		R F
+      Size = MAX
+

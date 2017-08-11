@@ -1,0 +1,12 @@
+Definition: A general list of elements of type T is a finite
+sequence of elements of T together with the following operations:
+
+1. Create the list, leaving it empty.
+2. Determine whether the list is empty or not.
+3. Determine whether the list is full or not.
+4. Find the size of the list.
+5. Insert a new entry in the position 0 <= p <= size.
+6. Delete an entry from the position 0 <= p <= size-1.
+7. Traverse the list, visiting each entry.
+8. Clear the list to make it empty.
+

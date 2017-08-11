@@ -1,0 +1,33 @@
+Solution 1: (but very un-smart)
+//It is as if we have different types in the same stack
+- Combine the fields of the different possible types in one data type.
+- Add an extra field, name it etype, and give it a code for every type.
+- Then, it is the responsibility of the user level to check for etype.
+
+//Stack.h
+typedef struct elementtype {
+    short int etype;
+    Type0 data;
+    Type1 voice;
+    Type2 fax;
+}ElementType;
+
+//main.c
+#define DATA 0
+#define VOICE 1
+#define FAX 2
+void main(void) {
+    ElementType e;
+
+    Pop(&e, &s);
+    switch(e.etype) {
+        case DATA:
+        case VOICE;
+        ...
+    }
+    ...
+}
+
+//Waste of memory for that all the fields are reserved and only one
+//will be used.
+

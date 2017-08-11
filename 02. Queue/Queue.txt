@@ -1,0 +1,16 @@
+Definition: A queue of elemnts of type T is a finite sequence of elements
+of T together with the following operations:
+
+1. Create the queue, leaving it empty.
+2. Determine whether the queue is empty or not.
+3. Determine whether the queue is full or not.
+4. Find the size of the queue.
+5. Traverse the queue, visiting each entry.
+6. Clear the queue to make it empty.
+7. Retrieve the front entry in the queue, provided the queue is not empty.
+8. Append (inqueue) a new entry onto the top of the queue, provided the
+   queue is
+   not full.
+9. Serve (and remove (dequeue)) the front entry from the queue, provided
+   the queue is not empty.
+

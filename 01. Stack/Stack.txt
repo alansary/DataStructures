@@ -1,0 +1,14 @@
+Definition: Stack of elements of type T is a finite sequence of elements
+of T together with the following operations:
+1. Create the stack, leaving it empty.
+2. Determine whether the stack is empty.
+3. Determine whether the stack is full or not.
+4. Find the size of the stack.
+5. Push a new entry onto the top of the stack; provided the stack is not
+   full.
+6. Pop the entry off the top of the stack, provided the stack is not
+   empty.
+7. Retrieve the Top entry off the stack, provided the stack is not empty.
+8. Traverse the stack, visiting each entry.
+9. Clear the stack to make it empty.
+

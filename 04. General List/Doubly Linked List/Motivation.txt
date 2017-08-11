@@ -1,0 +1,11 @@
+Design Enahncement: Learn how you modify your design to enhance the
+performance
+
+Accessing the list at a position preceding currentpos will be slow, since
+we cannot move back. A possible remedy is using doubly linked list.
+
+We need just a pointer, current, not necessarily point to the first node.
+currentpos will always indicates the order of the current node.
+
+Read the code from the book and solve the review problems.
+

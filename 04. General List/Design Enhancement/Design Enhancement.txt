@@ -1,0 +1,21 @@
+Design Enhancement: Learn how you modify your design to enhance the
+performance
+
+Many applications processes the entries in order, i.e., moving from one
+entry to the next.
+
+Many other applications refer to the same entry many times.
+
+Then, our current linked implementation is very inefficient, since it
+moves from the head to the element every time!
+Then, we need to remember the last position currentpos and start
+navigating from it, and we use current to start walking from currentpos.
+
+This reduces the time but not the complexity.
+
+Of course, this will not help if the new element is preceding the last
+element visietd.
+
+Only the type definition, InsertList, DeleteList, ReplaceList, and
+RetrieveList will change.
+

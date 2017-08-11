@@ -1,0 +1,225 @@
+How can we select among different implementations?
+
+Should information about the efficiency of implementations be included
+in the interface so that the user chooses between different complexities
+(of course without letting him involved in the implemenation details)?
+
+Possible Solution:
+Tell the use to write in Queue.h the following if he cares about
+memory utilization than speed
+#define LIMITED_MEMORY_
+
+Then, in Queue.c write the two implementations of Queue with the following
+pre-processor:
+#ifdef LIMITED_MEMORY_
+  //Write here the implementation of Linked Queues;
+#else
+  //Write here the implementation of Contiguous Queues;
+#endif
+
+***************************************************************************
+What about hiding the type definition from the header file?
+
+Possible Solution: we define the stack to be pointer to struct; this struct
+will be defined only in the stack.c
+/*LinkedStackMoreHiding.c*/
+#include <stdlib.h>
+#include "Global.h"
+#include "Stack.h"
+
+typedef struct stacknode {
+    StackEntry entry;
+    struct stacknode *next;
+}StackNode; //the same as before
+
+struct stack {
+    StackNode *top;
+}; //We do not use typedef here
+
+void Push(StackEntry item, PStack ps) {
+//exactly the same code; we only use
+//the type PStack instead of Stack
+}
+/*Old Stack.h*/
+typedef struct stack {
+    StackNode *top;
+}Stack;
+/*New Stack.h*/
+typedef struct stack *PStack;
+/*main.c*/
+#include "Global.h"
+#include "Stack.h"
+void main(void) {
+    PStack ps; //This statement will compile correctly
+    // since PStack is a pointer; it does not matter a
+    // pointer to what
+}
+//The only difference will be in the functions that change ps; namely,
+//CreateStack and ClearStack
+/*Stack.h*/
+typedef struct stack *PStack;
+
+void CreateStack(PStack *); // Pointer to Pointer to Stack
+/*main.c*/
+#include "Global.h"
+#include "Stack.h"
+void main(void) {
+    PStack ps;
+    CreateStack(&ps); // Pointer to Pointer to Stack
+    /* When ps is defined no structures is created yet; Therefore,
+       CreateStack has to use malloc to create the top and other fields. */
+void CreateStack(PStack *pps) { // Pointer to Pointer to Stack
+    *pps = (struct stack *)malloc(sizeof(struct stack)); // Pointer to Stack
+    (*pps)->top = NULL;
+}
+
+***************************************************************************
+What about using different element types in the same ADT? for
+example, StackEntry1 and StackEntry2?
+Imagine!!So far we cannot use:
+- more than one stack with different homogeneous element type.
+- or even, a single stack of non-homogeneous element types.
+
+Solution 1: (but very un-smart)
+//It is as if we have different types in the same stack
+- Combine the fields of the different possible types in one data type.
+- Add an extra field, name it etype, and give it a code for every type.
+- Then, it is the responsibility of the user level to check for etype.
+
+/*Stack.h*/
+typedef struct elementtype {
+    short int etype;
+    Type0 data;
+    Type1 voice;
+    Type2 fax;
+}ElementType;
+
+/*main.c*/
+#define DATA 0
+#define VOICE 1
+#define FAX 2
+void main(void) {
+    ElementType e;
+
+    Pop(&e, &s);
+    switch(e.etype) {
+	case DATA:
+        case VOICE;
+        ...
+    }
+    ...
+}
+
+//Waste of memory for that all the fields are reserved and only one
+//will be used.
+
+---------------------------------------------------------------------------
+Solution 2: (unions to save memory)
+
+/*Stack.h*/
+typedef struct elementtype {
+    short int etype;
+    union {
+	Type0 data;
+	Type1 voice;
+	Type2 fax;
+    }info;
+}ElementType;
+
+/*main.c*/
+#define DATA 0
+#define VOICE 1
+#define FAX 2
+
+void main(void) {
+    ElementType e;
+    Pop(&e, &s);
+    switch(e.etype) {
+	case DATA:
+	    e.info.data ...
+	case VOICE:
+	    e.info.voice ...
+	case FAX:
+	    e.info.fax ...
+    ...
+    }
+    ...
+}
+
+//The maximum of the fields will be reserved in memory
+
+---------------------------------------------------------------------------
+Solution 3: (much smarter)
+//Not only solves the issue but also allows commercializing Stack.obj
+//without the dependency on Stack.h
+//Homogeneous data type but we can produce Stack.obj without the dependency
+//on Stack.h
+
+Notice: Push calls malloc(sizeof(StackNode)) and StackNode contains
+StackEntry, which was compiled already into Stack.obj. If the user
+defines another StackEntry in Global.h this will cause a runtime problem!
+(Try it).
+//You compiled Stack.c that includes Global.h which defines the element
+//type, you cannot change the type again after compiling the source with
+//a different type.
+
+The solution, allows user for using both:
+- more than one stack with different homogeneous element type.
+- or even, a single stack of non-homogeneous element types.
+
+/*Global.h*/
+typedef struct stack {
+    int top;
+    void *entry[MAXSTACK]; //Array of void pointers to some data type
+}Stack;
+
+/*Stack.c*/
+void Push(void *pe, Stack *ps, int z) {
+    void *ptr = malloc(z);
+    memcpy(ptr, pe, z);
+    ps->entry[ps->top++] = ptr;
+}
+
+/*main.c*/
+void main(void) {
+    Stack s;
+    char e1;
+    int e2;
+    ...
+    CreateStack(&s);
+
+    Push((void *)&e1, &s, sizeof(e1));
+    Push((void *)&e2, &s, sizeof(e2));
+}
+
+//What about Pop?
+//If a single type exists in the stack, Push is fine this way. However,
+//if non-homogeneous elements exist we have to add a field of Element size.
+
+---------------------------------------------------------------------------
+Solution 4 (most efficient solution): Using C++ (OOP language) supporting
+the definition of an object undetermined type known by Templates:
+//Defining the type while creation
+
+/*Implementation*/
+template <class T>
+
+class Stack{
+private:
+    int top;
+    T *nodes;
+public:
+    Stack();
+    void Push(T&);
+    ...
+
+    ~Stack();
+};
+
+/*User*/
+
+...
+
+Stack<char> s1;
+Stack<int> s2;
+

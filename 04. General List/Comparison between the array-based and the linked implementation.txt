@@ -1,0 +1,18 @@
+Comparison between the array-based and the linked implementation:
+"Which is always better?" is a wrong question!
+
+---------------------------------------------------------------------------
+			Array-based		Linked
+---------------------------------------------------------------------------
+CreateList		Big-Theta(1)		Big-Theta(1)
+InsertList		Big-Theta(n)		Big-Theta(n)
+DeleteList		Big-Theta(n)		Big-Theta(n)
+RetrieveList		Big-Theta(1)		Big-Theta(n)
+ReplaceList		Big-Theta(1)		Big-Theta(n)
+
+InsertList and DeleteList are very time consuming for Array-based
+because of copying elements, especially if the elements are large records.
+
+RetrieveList and ReplaceList are always better for contiguous
+implementation.
+

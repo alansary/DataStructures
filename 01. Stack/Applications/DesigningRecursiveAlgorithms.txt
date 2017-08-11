@@ -1,0 +1,16 @@
+Find the key step. Begin by asking yourself, "How can this problem be
+divided into parts?" or "How will the key step in the middle be done?"
+
+Check termination. Verify that the recursion will always terminate. Be
+sure that your algorithm correctly handles extreme cases.
+
+Draw a recursion tree. The height of the tree is closely related to the
+amount of memory that the program will require, and the total size of the
+tree reflects the number of times the key step will be done.
+
+Find a stopping rule. This stopping rule is usually the small, special
+case that is trivial or easy to handle without recursion.
+
+Outline your algorithm. Combine the stopping rule and the key step,
+using an if statement to select between them, while convincing yourself
+that the function performs well in the non-base case.

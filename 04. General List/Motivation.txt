@@ -1,0 +1,17 @@
+Motivation: Why Lists?
+
+In a general list:
+    - New values are added in position determined by the user.
+    - Element is removed from a position determined by the user.
+
+Important notice:
+    - If we keep adding and removing from the first position (the
+      head of the list) the general list will behave as a stack.
+
+    - If we keep adding from one end and removing from another
+      end the list will behave as a queue.
+
+Application:
+    - In queues, sometimes we need a priority for some elements.
+      We may need to put an emergency call prior to others.
+

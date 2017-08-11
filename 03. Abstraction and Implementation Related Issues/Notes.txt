@@ -1,0 +1,6 @@
+The interface of the ADT (the header file in case of C programming,
+along with the pre- and post-conditions of the functions) defines the
+contract between users and implementers that provides a precise
+means of communicating what each can expect from the other.
+
+

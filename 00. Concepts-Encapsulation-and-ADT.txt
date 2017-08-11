@@ -1,0 +1,27 @@
+Information Hiding (Encapsulation):
+
+    - The use of functions. You use the structure at the "User Level"
+      without caring about the details at the "Implementation Level".
+
+    - Your program, i.e., the user level, does not change even if the
+      implementation of the used structure is changed.
+
+    - Your program is clear from the logical point of view.
+
+    - Enhancing the Top-Down-Design (We build the foundations first).
+
+Definitions, where every thing should start from!
+
+Definition: type is a set of values and a set of operations on those
+            values.
+
+Definition: A Sequence of length 0 is empty, A sequence of length
+            n >= 1 of elements from a set T is an ordered pair (sn-1, t)
+            where sn-1 is a sequence of length n-1 of elements from T and
+            t is an element of T.
+
+Definition: Abstract Data Type (ADT) is a data type that is accessed only
+            through an interface (or Accessing mechanism). We refer to a
+            program that uses an ADT as a client (or user) and a program
+            that specifies the data type as an implementation.
+

@@ -1,0 +1,33 @@
+Solution 2: (unions to save memory)
+
+/*Stack.h*/
+typedef struct elementtype {
+    short int etype;
+    union {
+        Type0 data;
+        Type1 voice;
+        Type2 fax;
+    }info;
+}ElementType;
+
+/*main.c*/
+#define DATA 0
+#define VOICE 1
+#define FAX 2
+
+void main(void) {
+    ElementType e;
+    Pop(&e, &s);
+    switch(e.etype) {
+        case DATA:
+            e.info.data ...
+        case VOICE:
+            e.info.voice ...
+        case FAX:
+            e.info.fax ...
+    ...
+    }
+    ...
+}
+
+//The maximum of the fields will be reserved in memory

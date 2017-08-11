@@ -1,0 +1,2 @@
+Comparison between the array-based and the linked implementation:
+"Which is always better?" is a wrong question!

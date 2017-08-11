@@ -1,0 +1,11 @@
+More subtle issues and some answers: We just open the door for deeper
+thinking and robust design
+
+Much more of these issues are out of the scope of our course. They are
+classified as low-level Software Engineering aspects.
+
+Also, solutions to these issues are languages dependent. E.g., the
+definition of the structure completely disappeared from the header file
+by defining a pointer to an undefined structure. In some languages, e.g.,
+Java, this is not available since there is no pointers.
+

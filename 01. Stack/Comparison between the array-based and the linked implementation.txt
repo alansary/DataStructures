@@ -1,0 +1,31 @@
+Comparison between the array-base and linked implementation:
+    "Which is always better?" is a wrong question!
+    - You must define a criteria
+
+Array-base implementation           | Linked implementation
+-All the space is reserved even     | -Extra field next for every node.
+the stack is empty (wasting memory) | -The stack size is as large as the
+-Stack gets full even if the memory | memory you have!
+is not!
+
+------------------------------------------------------------
+                    Array-based         Linked
+                    implementation      implementation
+------------------------------------------------------------
+Pop                 Big-Theta(1)        Big-Theta(1)
+Push                Big-Theta(1)        Big-Theta(1)
+CreateStack         Big-Theta(1)        Big-Theta(1)
+StackSize           Big-Theta(1)        Big-Theta(1)
+TraverseStack       Big-Theta(n)        Big-Theta(n)
+ClearStack          Big-Theta(1)        Big-Theta(n)
+
+Then , there are advantages and disadvantages for every implementation.
+Which one is better really depends on the application.E.g.,
+
+If ClearStaack is extensively used then, may be array-based implementation
+is better.
+
+If the memory is limited, then may be the linked implementation is better.
+
+The rule is: Know every pros and cons of each implementation and decide
+based on your application needs.

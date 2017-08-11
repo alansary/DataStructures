@@ -1,0 +1,8 @@
+0			size-1		MAXLIST-1
+X	X	X	X	NULL	NULL
+
+- This is a list (just a logical view, no implementation yet) with
+  number of entries equals to size.
+- We can add a new element if position 0 <= p <= size.
+- However, we delete from 0 <= p <= size-1.
+

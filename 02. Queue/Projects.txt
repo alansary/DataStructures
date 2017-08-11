@@ -1,0 +1,13 @@
+Application of Queues: Simplation of an Airpost
+Read it if you like
+
+Simulation is the use of one system to imitate the behavior of
+another system. A computer simulation is a program to imitate
+the behavior of the system under study.
+
+1. The same runway is used for both landings and takeoffs.
+2. One plane can land or take off in a unit of time, but not both.
+3. A random number of planes arrive in each time unit.
+4. A plane waiting to land goes before one waiting to take off.
+5. The planes that are waiting are kept in queues landing and
+   takeoff, both of which have a strictly limited size.

@@ -1,0 +1,14 @@
+Function Call Stack:
+    - Stack space: The StackEntry is a struct of variables and return
+      address of each function.
+    - All local parameters and return address of each function has to be
+      stored.
+    - Return is in LIFO order.
+    - Space required is the height of the tree (function call tree).
+    - OS has to use a stack to keep track of this storage sequence.
+    - When a function calls itself, this is recursion.
+    - Still stack is needed, no difference between A call B, or B calls
+      itself.
+    - The stack size is the depth of the tree.
+    - The number of calls, which determines the complexity and the
+      execution time, is the number of nodes in the tree.
